@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+
+<style>
+/*the container must be positioned relative:*/
+.custom-select {
+  position: relative;
+  font-family: Arial;
+}
+
+.custom-select select {
+  display: none; /*hide original SELECT element:*/
+}
+
+.select-selected {
+  background-color: DodgerBlue;
+}
+
+/*style the arrow inside the select element:*/
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+
+/*style the items (options), including the selected item:*/
+.select-items div,.select-selected {
+  color: #ffffff;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+  user-select: none;
+}
+
+/*style items (options):*/
+.select-items {
+  position: absolute;
+  background-color: DodgerBlue;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+/*hide the items when the select box is closed:*/
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.hero-image {
+  background-image: url("bg2.png");
+  background-color: #cccccc;
+  height: 500px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+body  {
+        background: url(bg2.png) no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      }
+  
+
+
+</style>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+	<script>
+	var stateObject = {
+	"India": { "Goa": ["NORTH GOA", "SOUTH GOA"], "Maharashtra": ["DHULE","PUNE", "SANGLI","SATARA","SOLAPUR"],
+	"Odisha": ["KORAPUT", "MALKANGIRI"],
+	},
+	}
+	window.onload = function () {
+	var countySel = document.getElementById("countySel"),
+	stateSel = document.getElementById("stateSel"),
+	districtSel = document.getElementById("districtSel");
+	for (var country in stateObject) {
+	countySel.options[countySel.options.length] = new Option(country, country);
+	}
+	countySel.onchange = function () {
+	stateSel.length = 1; // remove all options bar first
+	districtSel.length = 1; // remove all options bar first
+	if (this.selectedIndex < 1) return; // done
+	for (var state in stateObject[this.value]) {
+	stateSel.options[stateSel.options.length] = new Option(state, state);
+	}
+	}
+	countySel.onchange(); // reset in case page is reloaded
+	stateSel.onchange = function () {
+	districtSel.length = 1; // remove all options bar first
+	if (this.selectedIndex < 1) return; // done
+	var district = stateObject[countySel.value][this.value];
+	for (var i = 0; i < district.length; i++) {
+	districtSel.options[districtSel.options.length] = new Option(district[i], district[i]);
+	}
+	}
+	}
+	</script>
+  	
+  	<title>ML API</title>
+
+</head>
+
+<body  >
+<div >
+<center>
+
+ <div class="login">
+	<h1>Crop Suggestion</h1>
+	<br><br>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form style="background-color=#d8cfd4;" lass="w3-container w3-card-4" action="{{ url_for('predict')}}"method="post">
+    Select Country <br> <select  class="w3-select" style="width:20%;background-color: #a4bee6;" name="state" id="countySel" size="1">
+<option value=""  selected="selected">Select Country</option>
+</select>
+<br>
+<br>
+Select State <br> <select class="w3-select" style="width:20%;background-color: #a4bee6;" name="countrya" id="stateSel" size="1">
+<option value="" selected="selected">Please select Country first</option>
+</select>
+<br>
+<br>
+Select District <br> <select class="w3-select" style="width:20%;background-color: #a4bee6;" name="district" id="districtSel" size="1">
+<option value="" selected="selected">Please select State first</option>
+</select><br><br>
+Year <br> <input type="text" class="w3-input" style="width:20%;background-color: #a4bee6;"name="Year" placeholder="Year" required="required" /><br><br>
+Select Season <br> <select class="w3-select" style="width:20%;background-color: #a4bee6;" name="season" id="season" size="1">
+<option value="Autumn">Autumn</option>
+<option value="Kharif">Kharif</option>
+<option value="Rabi">Rabi</option>
+<option value="Summer">Summer</option>
+<option value="Whole Year">Whole Year</option>
+<option value="Winter">Winter</option></select>
+
+<br><br>
+    	
+	Rainfall <br> <input type="text" class="w3-input" style="width:20%;background-color: #a4bee6;"  name="Rainfall" placeholder="Rainfall" required="required" />
+
+	<br><br>
+        <button type="submit" class="w3-btn w3-teal">Predict</button>
+    </form>
+
+   <br>
+   <br>
+   
+   
+  
+
+ </div>
+</center>
+</div>
+
+</body>
+</html>
