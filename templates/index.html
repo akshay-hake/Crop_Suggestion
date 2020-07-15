@@ -138,21 +138,21 @@ body  {
 
      <!-- Main Input For Receiving Query to our ML -->
     <form style="background-color=#d8cfd4;" lass="w3-container w3-card-4" action="{{ url_for('predict')}}"method="post">
-    Select Country <br> <select  class="w3-select" style="width:20%;background-color: #a4bee6;" name="state" id="countySel" size="1">
+    Select Country <br> <select  class="w3-select" style="width:40%;background-color: #a4bee6;" name="state" id="countySel" size="1">
 <option value=""  selected="selected">Select Country</option>
 </select>
 <br>
 <br>
-Select State <br> <select class="w3-select" style="width:20%;background-color: #a4bee6;" name="countrya" id="stateSel" size="1">
+Select State <br> <select class="w3-select" style="width:40%;background-color: #a4bee6;" name="countrya" id="stateSel" size="1">
 <option value="" selected="selected">Please select Country first</option>
 </select>
 <br>
 <br>
-Select District <br> <select class="w3-select" style="width:20%;background-color: #a4bee6;" name="district" id="districtSel" size="1">
+Select District <br> <select class="w3-select" style="width:40%;background-color: #a4bee6;" name="district" id="districtSel" size="1">
 <option value="" selected="selected">Please select State first</option>
 </select><br><br>
-Year <br> <input type="text" class="w3-input" style="width:20%;background-color: #a4bee6;"name="Year" placeholder="Year" required="required" /><br><br>
-Select Season <br> <select class="w3-select" style="width:20%;background-color: #a4bee6;" name="season" id="season" size="1">
+Year <br> <input type="text" class="w3-input" style="width:40%;background-color: #a4bee6;"name="Year" placeholder="Year" required="required" /><br><br>
+Select Season <br> <select class="w3-select" style="width:40%;background-color: #a4bee6;" name="season" id="season" size="1">
 <option value="Autumn">Autumn</option>
 <option value="Kharif">Kharif</option>
 <option value="Rabi">Rabi</option>
@@ -162,7 +162,7 @@ Select Season <br> <select class="w3-select" style="width:20%;background-color: 
 
 <br><br>
     	
-	Rainfall <br> <input type="text" class="w3-input" style="width:20%;background-color: #a4bee6;"  name="Rainfall" placeholder="Rainfall" required="required" />
+	Rainfall <br> <input type="text" class="w3-input" style="width:40%;background-color: #a4bee6;"  name="Rainfall" placeholder="Rainfall" required="required" />
 
 	<br><br>
         <button type="submit" class="w3-btn w3-teal">Predict</button>
